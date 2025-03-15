@@ -22,10 +22,9 @@ const MapboxPlacesAutocomplete = ({
   placeholder = "Address",
   accessToken = "",
   onPlaceSelect,
-  countryId = "de",
   onClearInput,
 }) => {
-  const placesAutocomplete = usePlacesAutocomplete("", accessToken, countryId);
+  const placesAutocomplete = usePlacesAutocomplete("", accessToken);
   if (id === "" || typeof id !== "string")
     throw new Error(
       "[MapboxPlacesAutocomplete] Property `id` is required and must be a string."
@@ -128,16 +127,17 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
+    width: "100%",
   },
   suggestionItem: {
     color: "#374151",
     fontWeight: "300",
-    fontSize: 12,
+    fontSize: 14,
     borderBottomWidth: 0.3,
     borderBottomColor: "#9ca3af",
     marginTop: 2,
+    padding: 5,
   },
   creditBox: {
     display: "flex",
