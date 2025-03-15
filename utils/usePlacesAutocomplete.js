@@ -1,11 +1,10 @@
 import { useState, useCallback } from "react";
-import { debounce } from "../utils/global"; // Global debounce fonksiyonunu import et
+import { debounce } from "../utils/global";
 
 const usePlacesAutocomplete = (initialValue, accessToken) => {
   const [value, setValue] = useState(initialValue);
   const [suggestions, setSuggestions] = useState([]);
 
-  // 📌 API çağrısını yapan fonksiyon (debounce ile kullanılacak)
   const fetchPlaces = async (inputText) => {
     if (!inputText) {
       setSuggestions([]);
@@ -24,10 +23,8 @@ const usePlacesAutocomplete = (initialValue, accessToken) => {
     }
   };
 
-  // ⏳ Debounce edilmiş API çağrısı
   const debouncedFetchPlaces = useCallback(debounce(fetchPlaces, 500), []);
 
-  // 🔥 Kullanıcı her input girdiğinde debounce edilmiş API çağrısını çalıştır
   const handleChange = (inputText) => {
     setValue(inputText);
     debouncedFetchPlaces(inputText);
